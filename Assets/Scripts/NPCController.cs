@@ -115,6 +115,7 @@ public class NPCController : MonoBehaviour
                 _aiDestinationSetter.target = destination.transform;
                 _isDiverting = false;
             }
+            
         }
     }
 
