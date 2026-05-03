@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class PlayerDialogue : MonoBehaviour
 {
-    public List<string> dialogue = new List<string>();
+    // Updated: Now using the custom DialogueData class instead of a simple string
+    public List<DialogueData> dialogue = new List<DialogueData>();
     private bool canSpeak = false;
     private bool isSpeaking = false;
     private GameObject _talkPanel;
     private TextMeshProUGUI _talkText;
     private int _talkIndex = 0;
+
+    // New: Component to handle playing the audio
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -18,9 +22,15 @@ public class PlayerDialogue : MonoBehaviour
 
         _talkPanel = GameObject.Find(Structs.GameObjects.talkPanel);
         _talkPanel.SetActive(false);
+
+        // New: Get or Add an AudioSource component
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isSpeaking && Input.GetKeyDown(KeyCode.E))
@@ -33,7 +43,9 @@ public class PlayerDialogue : MonoBehaviour
             else
             {
                 _talkIndex++;
-                _talkText.text = dialogue[_talkIndex];
+                // Updated: Access .text and play the associated sound
+                _talkText.text = dialogue[_talkIndex].text;
+                PlayCurrentAudio();
             }
         }
         else if (canSpeak && Input.GetKeyDown(KeyCode.E))
@@ -41,7 +53,18 @@ public class PlayerDialogue : MonoBehaviour
             isSpeaking = true;
             _talkPanel.SetActive(true);
             _talkIndex = 0;
-            _talkText.text = dialogue[_talkIndex]; 
+            // Updated: Access .text and play the associated sound
+            _talkText.text = dialogue[_talkIndex].text;
+            PlayCurrentAudio();
+        }
+    }
+
+    // New: Helper method to play the audio clip assigned to the current dialogue index
+    private void PlayCurrentAudio()
+    {
+        if (dialogue[_talkIndex].soundEffect != null)
+        {
+            _audioSource.PlayOneShot(dialogue[_talkIndex].soundEffect);
         }
     }
 
@@ -55,7 +78,8 @@ public class PlayerDialogue : MonoBehaviour
         return isSpeaking;
     }
 
-    public void CopyDialogue(List<string> newDialogue)
+    // Updated: Changed parameter type to List<DialogueData>
+    public void CopyDialogue(List<DialogueData> newDialogue)
     {
         dialogue.Clear();
         dialogue.AddRange(newDialogue);
