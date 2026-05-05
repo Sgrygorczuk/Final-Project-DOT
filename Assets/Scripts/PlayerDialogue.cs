@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement; // Required for loading new scenes
 
 public class PlayerDialogue : MonoBehaviour
 {
-    // Updated: Now using the custom DialogueData class instead of a simple string
     public List<DialogueData> dialogue = new List<DialogueData>();
     private bool canSpeak = false;
     private bool isSpeaking = false;
@@ -13,17 +13,17 @@ public class PlayerDialogue : MonoBehaviour
     private TextMeshProUGUI _talkText;
     private int _talkIndex = 0;
 
-    // New: Component to handle playing the audio
+    [Header("Scene Settings")]
+    public string nextSceneName; // Set this in the Unity Inspector
+
     private AudioSource _audioSource;
 
     private void Start()
     {
         _talkText = GameObject.Find(Structs.GameObjects.talkText).GetComponent<TextMeshProUGUI>();
-
         _talkPanel = GameObject.Find(Structs.GameObjects.talkPanel);
         _talkPanel.SetActive(false);
 
-        // New: Get or Add an AudioSource component
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)
         {
@@ -39,11 +39,16 @@ public class PlayerDialogue : MonoBehaviour
             {
                 isSpeaking = false;
                 _talkPanel.SetActive(false);
+
+                // --- Scene Transition Logic ---
+                if (!string.IsNullOrEmpty(nextSceneName))
+                {
+                    SceneManager.LoadScene(nextSceneName);
+                }
             }
             else
             {
                 _talkIndex++;
-                // Updated: Access .text and play the associated sound
                 _talkText.text = dialogue[_talkIndex].text;
                 PlayCurrentAudio();
             }
@@ -53,13 +58,11 @@ public class PlayerDialogue : MonoBehaviour
             isSpeaking = true;
             _talkPanel.SetActive(true);
             _talkIndex = 0;
-            // Updated: Access .text and play the associated sound
             _talkText.text = dialogue[_talkIndex].text;
             PlayCurrentAudio();
         }
     }
 
-    // New: Helper method to play the audio clip assigned to the current dialogue index
     private void PlayCurrentAudio()
     {
         if (dialogue[_talkIndex].soundEffect != null)
@@ -68,17 +71,9 @@ public class PlayerDialogue : MonoBehaviour
         }
     }
 
-    public void SetCanSpeak(bool newCanSpeak)
-    {
-        canSpeak = newCanSpeak;
-    }
+    public void SetCanSpeak(bool newCanSpeak) { canSpeak = newCanSpeak; }
+    public bool IsSpeaking() { return isSpeaking; }
 
-    public bool IsSpeaking()
-    {
-        return isSpeaking;
-    }
-
-    // Updated: Changed parameter type to List<DialogueData>
     public void CopyDialogue(List<DialogueData> newDialogue)
     {
         dialogue.Clear();

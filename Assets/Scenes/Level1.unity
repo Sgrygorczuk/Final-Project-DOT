@@ -9751,7 +9751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.size
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[0]
@@ -9772,11 +9772,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[0].text
-      value: 'Mysterious Person: Hello, Player!'
+      value: 'Mysterious Person: What are you waiting for? The park must be clean
+        in order to become better'
       objectReference: {fileID: 0}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[1].text
-      value: 'Player: Nice to meet you sir, I''m here to volunteer!'
+      value: 'Mysterious Person: Please keep in mind, there''s loiterers, so make
+        sure the park isn''t FULLY messed up.'
       objectReference: {fileID: 0}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[2].text
@@ -9799,7 +9801,7 @@ PrefabInstance:
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[1].soundEffect
       value: 
-      objectReference: {fileID: 8300000, guid: fc2826c8db2d23d458d7d5e8567ab590, type: 3}
+      objectReference: {fileID: 8300000, guid: bc8b156017c3b5746986aa8e80545f5b, type: 3}
     - target: {fileID: 8520119836045698116, guid: 696cd09b848267a4180ccf533268b0fd, type: 3}
       propertyPath: dialogue.Array.data[2].soundEffect
       value: 
@@ -17677,6 +17679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 826392977520304643, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: nextSceneName
+      value: Level1
+      objectReference: {fileID: 0}
     - target: {fileID: 1800556627693974082, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_Name
       value: TalkingPlayer
@@ -17752,7 +17758,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1800556627693974082, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2076068301}
   m_SourcePrefab: {fileID: 100100000, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
 --- !u!4 &1593575086 stripped
 Transform:
@@ -23036,6 +23045,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2076068300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1800556627693974082, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+  m_PrefabInstance: {fileID: 1593575085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2076068301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076068300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b2a192d19b9604f847dae421835969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterVisualObject: {fileID: 2076068300}
+  sweepAttackPrefab: {fileID: 1800556627693974082, guid: 7665ea5d484402d45aa1484970ad0af2, type: 3}
+  spawnOffset: {x: 0, y: 0, z: 0}
+  attackVisualDuration: 2
+  attackCooldown: 3
 --- !u!1 &2077164813
 GameObject:
   m_ObjectHideFlags: 0
