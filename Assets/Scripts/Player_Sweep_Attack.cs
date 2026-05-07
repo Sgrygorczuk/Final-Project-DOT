@@ -5,81 +5,75 @@ using UnityEngine;
 
 public class Player_Sweep_Attack : MonoBehaviour
 {
-    [Header("Target Renderer")]
-    public GameObject characterVisualObject;
+    [Header("Visual Switchbox")]
+    public GameObject idleVisuals;
+    public GameObject sweepVisuals;
 
-    [Header("Prefab Configuration")]
-    public GameObject sweepAttackPrefab;
-    [Tooltip("Adjust this to align the sweep with the player's body")]
-    public Vector3 spawnOffset = Vector3.zero;
+    [Header("Trashbag Perk")]
+    public GameObject trashbagPrefab;
+    public Transform firePoint;
+    public float bulletSpeed = 15f;
+    public int trashAmmo = 0;
 
     [Header("Timing")]
-    public float attackVisualDuration = 0.3f;
-    public float attackCooldown = 0.5f;
-    private float _nextAttackTime = 0f;
+    public float sweepDuration = 0.4f;
 
-    private SpriteRenderer _foundRenderer;
     private bool _isAttacking = false;
 
-    private void Start()
+    void Start()
     {
-        UpdateRendererReference();
-    }
-
-    private void UpdateRendererReference()
-    {
-        if (characterVisualObject != null)
+        // Safety: If these aren't dragged in, the script warns you immediately
+        if (idleVisuals == null || sweepVisuals == null)
         {
-            _foundRenderer = characterVisualObject.GetComponent<SpriteRenderer>();
-            if (_foundRenderer == null)
-                _foundRenderer = characterVisualObject.GetComponentInChildren<SpriteRenderer>();
+            Debug.LogError("<color=red>Missing Visuals!</color> Drag your child objects into the slots on " + gameObject.name);
         }
     }
 
-    private void Update()
+    void Update()
     {
-        bool cooldownOver = Time.time >= _nextAttackTime;
-        PlayerDialogue dialogueSystem = GetComponent<PlayerDialogue>();
-        bool isTalking = dialogueSystem != null && dialogueSystem.IsSpeaking();
-
-        if (Input.GetMouseButtonDown(0) && cooldownOver && !isTalking && !_isAttacking)
+        if (Input.GetMouseButtonDown(0) && !_isAttacking)
         {
-            PerformAttack();
+            // Only start if we have the objects assigned
+            if (idleVisuals != null && sweepVisuals != null)
+                StartCoroutine(PerformHardSwapSweep());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && trashAmmo > 0 && !_isAttacking)
+        {
+            ShootTrash();
         }
     }
 
-    private void PerformAttack()
-    {
-        _nextAttackTime = Time.time + attackCooldown;
-        StartCoroutine(PerformSweepSequence());
-    }
-
-    private IEnumerator PerformSweepSequence()
+    IEnumerator PerformHardSwapSweep()
     {
         _isAttacking = true;
-        if (_foundRenderer == null) UpdateRendererReference();
 
-        // 1. VANISH
-        if (_foundRenderer != null) _foundRenderer.enabled = false;
+        // SWAP ON
+        idleVisuals.SetActive(false);
+        sweepVisuals.SetActive(true);
 
-        // 2. SPAWN
-        GameObject spawnedAttack = Instantiate(sweepAttackPrefab, transform.position, transform.rotation);
+        yield return new WaitForSeconds(sweepDuration);
 
-        // 3. ALIGNMENT FIX
-        spawnedAttack.transform.SetParent(this.transform);
-
-        // Use the Offset variable to move the prefab into place
-        spawnedAttack.transform.localPosition = spawnOffset;
-
-        // Keep scale consistent
-        spawnedAttack.transform.localScale = Vector3.one;
-
-        yield return new WaitForSeconds(attackVisualDuration);
-
-        // 4. REAPPEAR
-        if (spawnedAttack != null) Destroy(spawnedAttack);
-        if (_foundRenderer != null) _foundRenderer.enabled = true;
+        // SWAP OFF
+        sweepVisuals.SetActive(false);
+        idleVisuals.SetActive(true);
 
         _isAttacking = false;
+    }
+
+    public void AddAmmo(int amount) => trashAmmo += amount;
+
+    void ShootTrash()
+    {
+        if (trashbagPrefab == null || firePoint == null) return;
+
+        trashAmmo--;
+        GameObject bullet = Instantiate(trashbagPrefab, firePoint.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            float direction = transform.localScale.x > 0 ? 1f : -1f;
+            rb.velocity = new Vector2(direction * bulletSpeed, 0);
+        }
     }
 }

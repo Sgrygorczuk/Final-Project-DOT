@@ -8514,7 +8514,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.514151, g: 0.514151, b: 0.514151, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13022,7 +13022,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.9858491, b: 0.9858491, a: 1}
   m_FlipX: 0
@@ -15888,6 +15888,7 @@ PrefabInstance:
     - {fileID: 9114471181827906570, guid: 4080a7be149b501498404e3ad2eba2a3, type: 3}
     - {fileID: 1164732163364055018, guid: 4080a7be149b501498404e3ad2eba2a3, type: 3}
     - {fileID: 4247833911037777178, guid: 4080a7be149b501498404e3ad2eba2a3, type: 3}
+    - {fileID: 4591659424287938504, guid: 4080a7be149b501498404e3ad2eba2a3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5351567827833109524, guid: 4080a7be149b501498404e3ad2eba2a3, type: 3}
       insertIndex: 1
@@ -17177,7 +17178,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -211
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 9bebffe0d726af24980d63d3f937c142, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.36078432}
   m_FlipX: 0
@@ -17198,7 +17199,7 @@ Transform:
   m_GameObject: {fileID: 1493301776}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.1, y: -1.6875963, z: 0}
+  m_LocalPosition: {x: -83.8, y: -1.6875963, z: 0}
   m_LocalScale: {x: 85.06, y: 85.06, z: 85.06}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -17906,6 +17907,38 @@ PrefabInstance:
     - target: {fileID: 3076340021279171867, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366410015812602482, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571618544985786448, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6705472084016291778, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_Color.b
@@ -23225,11 +23258,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b2a192d19b9604f847dae421835969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterVisualObject: {fileID: 2076068300}
-  sweepAttackPrefab: {fileID: 1800556627693974082, guid: 7665ea5d484402d45aa1484970ad0af2, type: 3}
-  spawnOffset: {x: 0, y: 0, z: 0}
-  attackVisualDuration: 2
-  attackCooldown: 3
+  idleVisuals: {fileID: 2076068300}
+  sweepVisuals: {fileID: 1800556627693974082, guid: 7665ea5d484402d45aa1484970ad0af2, type: 3}
+  trashbagPrefab: {fileID: 1800556627693974082, guid: d409f6371540d3543b6ad9d562ccd899, type: 3}
+  firePoint: {fileID: 3076340021279171867, guid: f69d21befce32b9499d2f2b4739ec9b0, type: 3}
+  bulletSpeed: 5
+  trashAmmo: 1
+  sweepDuration: 0.5
 --- !u!1 &2077164813
 GameObject:
   m_ObjectHideFlags: 0
