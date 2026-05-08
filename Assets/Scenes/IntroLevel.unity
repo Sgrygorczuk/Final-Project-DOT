@@ -17100,15 +17100,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076340021279171867, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3076340021279171867, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3076340021279171867, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.0866666
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 3076340021279171867, guid: 2ba8f0e13eebaa444b94f93d80407a4c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17219,11 +17219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b2a192d19b9604f847dae421835969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterVisualObject: {fileID: 874071100}
-  sweepAttackPrefab: {fileID: 1800556627693974082, guid: 7665ea5d484402d45aa1484970ad0af2, type: 3}
-  spawnOffset: {x: 0.1, y: -0.6, z: 0}
-  attackVisualDuration: 3
-  attackCooldown: 2
+  sweepPrefab: {fileID: 0}
+  sweepDuration: 0.4
+  trashbagPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 15
+  trashAmmo: 0
 --- !u!1 &1610482175
 GameObject:
   m_ObjectHideFlags: 0
