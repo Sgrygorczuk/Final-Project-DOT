@@ -2,35 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TrashBin : MonoBehaviour
 {
-    [Header("Visual Feedback")]
-    public GameObject depositEffect; // Optional: Drag a "sparkle" or "poof" prefab here
+    [Header("Detection Settings")]
+    public string trashTag = "Trash"; // Optional: Use tags for extra safety
+
+    [Header("Effects")]
+    public GameObject depositParticle; // Assign a particle prefab for a 'pop' effect
+    public AudioSource depositSound;   // Assign an AudioSource for a 'ding' sound
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 1. Try to get the projectile script from the object that hit the bin
+        // 1. Try to find the TrashbagProjectile script on the object that entered
         TrashbagProjectile bag = other.GetComponent<TrashbagProjectile>();
 
-        // 2. If it IS a trashbag...
         if (bag != null)
         {
-            // SUCCESS!
-            Debug.Log("Bullseye! Trash in the bin.");
+            // 2. Trigger the "Success" logic in the bag
+            // This sends the bin's position to the bag so it can zip to the center
+            bag.SetHitTarget(this.transform);
 
-            // 3. Tell the bag to NOT spawn GroundTrash when it's destroyed
-            bag.SetHitTarget(true);
+            // 3. Play visual and audio feedback
+            PlayEffects();
 
-            // 4. (Optional) Play a visual effect at the bin's position
-            if (depositEffect != null)
-            {
-                Instantiate(depositEffect, transform.position, Quaternion.identity);
-            }
+            Debug.Log("Trash successfully deposited!");
+        }
+    }
 
-            // 5. Remove the bag from the game
-            Destroy(other.gameObject);
+    private void PlayEffects()
+    {
+        if (depositSound != null) depositSound.Play();
 
-            // Note: You can add ScoreManager.instance.AddPoint() here later!
+        if (depositParticle != null)
+        {
+            Instantiate(depositParticle, transform.position, Quaternion.identity);
         }
     }
 }
