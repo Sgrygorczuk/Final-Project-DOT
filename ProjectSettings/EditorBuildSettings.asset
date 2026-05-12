@@ -6,9 +6,42 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 57351cf86af11b74b8f539ecfcc8bd56
+  - enabled: 1
     path: Assets/Scenes/IntroLevel.unity
     guid: 70b9742fefc0e8447b2218538cb38ecb
   - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 3a6f21098b3bd894db8874c6e8463ea7
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 8f0488319f743ec489ed0c22f6fa9fe6
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example15_2D/2D.unity
+    guid: 15c1a00768b91406da1023481bb6b04e
+  - enabled: 1
+    path: Assets/Scenes/Arena_1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DataImmanuel_Scene.unity
+    guid: 65ea78c4a37feb340aa5818b278e28b2
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/Example2.unity
+    guid: b04e6b995408741cf8dc427c6173f5f8
+  - enabled: 1
+    path: Assets/Scenes/HubLevel.unity
+    guid: 47c08bba825e9a34f8d27b8c474e3ecc
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/NavmeshExample.unity
+    guid: 32536486e77cc4002ae78cd83c90bb2b
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example9_Penalties/PenaltiesExample.unity
+    guid: af5549f83cd6e498dbe788615aa953da
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/PointGraphExample.unity
+    guid: 1cd57dbb745d9402f97fa830e41cd128
+  - enabled: 1
+    path: Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/Procedural.unity
+    guid: 9df9f020877fb4842b75396ddf708b69
   m_configObjects: {}

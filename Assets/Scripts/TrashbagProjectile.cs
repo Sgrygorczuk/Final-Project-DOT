@@ -3,40 +3,123 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class TrashbagProjectile : MonoBehaviour
+
 {
-    public float lifeTime = 3f;
-    public GameObject groundTrashPrefab;
-    private bool _hasHitTarget = false;
 
-    private void Start()
-    {
-        Invoke("ConvertToTrash", lifeTime);
-    }
+    [Header("Projectile Settings")]
 
-    // 1. THIS MUST BE PUBLIC SO THE BIN CAN SEE IT
-    public void SetHitTarget(bool state)
-    {
-        _hasHitTarget = state;
-    }
+    public GameObject trashPrefab;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public float shootForce = 15f;
+
+    public float spawnOffset = 0.7f;
+
+
+
+    [Header("References")]
+
+    public Camera mainCamera;
+
+    public Transform bulletTrash;
+
+
+
+    void Update()
+
     {
-        if (other.CompareTag("Ground"))
+
+        if (Input.GetMouseButtonDown(1))
+
         {
-            ConvertToTrash();
+
+            Shoot();
+
         }
+
     }
 
-    void ConvertToTrash()
+
+
+    void Shoot()
+
     {
-        if (!_hasHitTarget)
+
+        // 1. Safety Checks
+
+        if (trashPrefab == null)
+
         {
-            if (groundTrashPrefab != null)
-            {
-                Instantiate(groundTrashPrefab, transform.position, Quaternion.identity);
-            }
-            Destroy(gameObject);
+
+            Debug.LogError("Assign the Trash Prefab in the Inspector!");
+
+            return;
+
         }
+
+        if (mainCamera == null)
+
+        {
+
+            mainCamera = Camera.main; // Auto-assign if forgotten
+
+        }
+
+
+
+        // 2. Calculate Direction
+
+        Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        mousePos.z = 0f;
+
+        Vector2 dir = ((Vector2)mousePos - (Vector2)transform.position).normalized;
+
+
+
+        // 3. Set Spawn Position
+
+        Vector3 spawnPos = transform.position + (Vector3)dir * spawnOffset;
+
+
+
+        // 4. CREATE THE CLONE
+
+        // We store the clone in a variable called 'newBag'
+
+        GameObject newBag = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
+
+
+
+
+
+        // 6. APPLY PHYSICS TO THE CLONE
+
+        Rigidbody2D rb = newBag.GetComponent<Rigidbody2D>();
+
+        if (rb != null)
+
+        {
+
+            rb.velocity = Vector2.zero;
+
+            rb.AddForce(dir * shootForce, ForceMode2D.Impulse);
+
+        }
+
     }
+
+
+
+    public void SetHitTarget(Transform target)
+
+    {
+
+        // Keeps TrashBin script from breaking
+
+        Debug.Log("Trashbag hit target: " + target.name);
+
+    }
+
 }
