@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3349472419494063357}
   - component: {fileID: 3571618544985786448}
   - component: {fileID: 2645563415537539907}
+  - component: {fileID: 3005176341216546670}
   - component: {fileID: 1682836126011602375}
   m_Layer: 0
   m_Name: TalkingPlayer
@@ -33,8 +34,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 16, y: 16, z: 10.666666}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5801545459057553438}
   m_Father: {fileID: 0}
@@ -124,18 +125,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.018092647, y: 0.036200684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.19061959, y: 0.25663263}
   m_EdgeRadius: 0
 --- !u!50 &2645563415537539907
 Rigidbody2D:
@@ -164,6 +165,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3005176341216546670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800556627693974082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b2a192d19b9604f847dae421835969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sweepPrefab: {fileID: 0}
+  sweepDuration: 0.4
+  trashbagPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 15
+  trashAmmo: 0
 --- !u!95 &1682836126011602375
 Animator:
   serializedVersion: 5
@@ -211,9 +230,9 @@ Transform:
   m_GameObject: {fileID: 8536129355176100239}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.079, y: -0.073, z: 0}
-  m_LocalScale: {x: 3.742064, y: 3.6665335, z: 8.2497}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3076340021279171867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
